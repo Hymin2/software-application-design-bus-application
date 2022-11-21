@@ -22,25 +22,31 @@
             android:layout_weight="1"
             app:srcCompat="@drawable/icon_black_bus" />
 
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:padding="5dp">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:background="@drawable/layout_search_bar"
-                android:singleLine="true" />
-            <Button
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="65dp"
-                android:layout_gravity="right|center_vertical"
-                android:background="@drawable/icon_reset_btn" />
-        </FrameLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <androidx.appcompat.widget.SearchView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:closeIcon="@drawable/icon_reset_btn"
+                    app:queryBackground="@drawable/layout_search_bar"
+                    app:iconifiedByDefault="false"
+                    app:queryHint="검색어를 입력하시오"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
