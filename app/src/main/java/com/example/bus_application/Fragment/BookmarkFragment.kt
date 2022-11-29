@@ -9,7 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bus_application.Adapter.BookmarkAdapter
 import com.example.bus_application.R
 import com.example.bus_application.databinding.FragmentBookmarkBinding
-
+/* 이거 지워
+* 이거 지워
+* 이거 지워
+* 이거 지워
+* 이거 지워
+* 이거 지워*/
 class BookmarkFragment : Fragment() {
 
     private lateinit var binding : FragmentBookmarkBinding

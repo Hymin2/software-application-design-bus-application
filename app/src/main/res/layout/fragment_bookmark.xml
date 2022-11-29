@@ -17,6 +17,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:listitem="@layout/item_recycler_bookmark_stop">
-
+#이거 지우세요
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

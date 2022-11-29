@@ -17,5 +17,5 @@
         android:orientation="vertical"
         tools:listitem="@layout/item_recycler_alarm_ride">
     </androidx.recyclerview.widget.RecyclerView>
-
+#이거 지우세요
 </FrameLayout>

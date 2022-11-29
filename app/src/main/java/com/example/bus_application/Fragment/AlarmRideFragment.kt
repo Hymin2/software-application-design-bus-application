@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.bus_application.R
 
-/**
+/**이거 지워
+ * 이거 지워
+ * 이거 지워
+ * 이거 지워
  * A simple [Fragment] subclass.
  * Use the [AlarmRideFragment.newInstance] factory method to
  * create an instance of this fragment.
