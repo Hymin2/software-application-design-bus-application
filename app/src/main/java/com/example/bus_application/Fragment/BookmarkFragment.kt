@@ -14,7 +14,7 @@ import com.example.bus_application.databinding.FragmentBookmarkBinding
 * 이거 지워
 * 이거 지워
 * 이거 지워
-* 이거 지워*/
+* 이거 지워1*/
 class BookmarkFragment : Fragment() {
 
     private lateinit var binding : FragmentBookmarkBinding
