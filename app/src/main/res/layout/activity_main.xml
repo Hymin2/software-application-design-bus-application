@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="409dp"
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="#435CB5"
+        android:gravity="center"
+        android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
         <ImageView
@@ -21,82 +21,80 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/icon_black_bus" />
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:contentInsetStart="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:contentInsetStart="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
 
                 <androidx.appcompat.widget.SearchView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    app:closeIcon="@drawable/icon_reset_btn"
+                    app:iconifiedByDefault="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:closeIcon="@drawable/icon_reset_btn"
                     app:queryBackground="@drawable/layout_search_bar"
-                    app:iconifiedByDefault="false"
-                    app:queryHint="검색어를 입력해주세요"/>
+                    app:queryHint="검색어를 입력해주세요" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:checkedButton="@id/radio_btn_bookmark">
 
             <RadioButton
+                android:id="@+id/radio_btn_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_radio_main"
+                android:button="@null"
                 android:gravity="center"
                 android:text="즐겨찾기"
-                android:layout_weight="1"
-                android:button="@null"
-                android:textColor="@drawable/text_radio_main"
-                android:background="@drawable/btn_radio_main"/>
+                android:textColor="@drawable/text_radio_main" />
+
             <RadioButton
+                android:id="@+id/radio_btn_ride"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_radio_main"
+                android:button="@null"
                 android:gravity="center"
                 android:text="승차 알람"
-                android:layout_weight="1"
-                android:button="@null"
-                android:textColor="@drawable/text_radio_main"
-                android:background="@drawable/btn_radio_main"/>
+                android:textColor="@drawable/text_radio_main" />
+
             <RadioButton
+                android:id="@+id/radio_btn_getoff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_radio_main"
+                android:button="@null"
                 android:gravity="center"
                 android:text="하차 알람"
-                android:layout_weight="1"
-                android:button="@null"
-                android:textColor="@drawable/text_radio_main"
-                android:background="@drawable/btn_radio_main"/>
+                android:textColor="@drawable/text_radio_main" />
         </RadioGroup>
     </LinearLayout>
+    
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:listitem="@layout/item_recycler_bookmark">
-    </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

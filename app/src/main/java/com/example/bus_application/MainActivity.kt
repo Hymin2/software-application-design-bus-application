@@ -2,41 +2,51 @@ package com.example.bus_application
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bus_application.Adapter.BookmarkAdapter
+import com.example.bus_application.Adapter.BusAdapter
+import com.example.bus_application.Fragment.BookmarkFragment
 import com.example.bus_application.databinding.ActivityMainBinding
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var profileAdapter: ProfileAdapter
-    val datas = mutableListOf<ProfileData>()
+    private lateinit var BookmarkAdapter : BookmarkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        binding = ActivityMainBinding.inflate(layoutInflater);
+        val bookmarkfragment = BookmarkFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_bookmark, BookmarkFragment()).commit()
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
-        initRecycler()
-    }
-    private fun initRecycler() {
-        profileAdapter = ProfileAdapter(this)
-        binding.rvProfile.adapter = profileAdapter
+        BookmarkAdapter = BookmarkAdapter()
 
 
-        datas.apply {
-            add(ProfileData(name = "mary", age = 24))
-            add(ProfileData(name = "jenny", age = 26))
-            add(ProfileData(name = "jhon", age = 27))
-            add(ProfileData(name = "ruby", age = 21))
-            add(ProfileData(name = "yuna", age = 23))
-            add(ProfileData(name = "yu21312na", age = 23))
-
-            profileAdapter.datas = datas
-            profileAdapter.notifyDataSetChanged()
-
+/*
+        binding.rvBookmark.apply{
+            adapter= BookmarkAdapter()
+            layoutManager=LinearLayoutManager(context)
         }
+        */
     }
+
+    override fun passDataCom(editTextInput : String) {
+        val bundle = Bundle()
+        bundle.putString("message", editTextInput)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val
+    }
+
 }
 
 

@@ -1,6 +1,6 @@
 package com.example.bus_application
 
-data class ProfileData (
+data class BookmarkData (
     val name : String,
-    val age : Int
+    val direction : String
 )
