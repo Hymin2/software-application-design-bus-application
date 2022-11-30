@@ -5,19 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    app:layoutDescription="@xml/activity_search_scene"
+    tools:context=".SearchActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#435CB4"
+        android:background="#435CB5"
         android:gravity="center"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -36,7 +35,7 @@
                 android:paddingEnd="16dp">
 
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_bar_main"
+                    android:id="@+id/search_bar_search"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     app:closeIcon="@drawable/icon_reset_btn"
@@ -50,43 +49,32 @@
         </androidx.appcompat.widget.Toolbar>
 
         <RadioGroup
-            android:id="@+id/radio_group"
+            android:id="@+id/search_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/radio_btn_bookmark"
+            android:checkedButton="@id/search_bus"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radio_btn_bookmark"
+                android:id="@+id/search_bus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_radio_main"
                 android:button="@null"
                 android:gravity="center"
-                android:text="즐겨찾기"
+                android:text="버스"
                 android:textColor="@drawable/text_radio_main" />
 
             <RadioButton
-                android:id="@+id/radio_btn_ride"
+                android:id="@+id/search_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_radio_main"
                 android:button="@null"
                 android:gravity="center"
-                android:text="승차 알람"
-                android:textColor="@drawable/text_radio_main" />
-
-            <RadioButton
-                android:id="@+id/radio_btn_getoff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/btn_radio_main"
-                android:button="@null"
-                android:gravity="center"
-                android:text="하차 알람"
+                android:text="정류장"
                 android:textColor="@drawable/text_radio_main" />
         </RadioGroup>
     </LinearLayout>
@@ -96,37 +84,20 @@
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_bookmark"
+            android:id="@+id/rv_bus_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:listitem="@layout/item_recycler_bookmark_stop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <TextView
-            android:id="@+id/text_ride"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_stop_search"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="승차 알람"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/text_getoff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="하차 알람"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

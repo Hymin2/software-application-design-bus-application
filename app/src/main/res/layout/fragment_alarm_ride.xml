@@ -9,7 +9,6 @@
         android:id="@+id/framelayout"
         layout="@layout/activity_main">
     </include>
-<!--- 이게 주석이래 이거 지워-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_rideAlarm"
@@ -18,4 +17,5 @@
         android:orientation="vertical"
         tools:listitem="@layout/item_recycler_alarm_ride">
     </androidx.recyclerview.widget.RecyclerView>
+
 </FrameLayout>
