@@ -1,24 +1,19 @@
 package com.example.bus_application.Adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bus_application.R
 import com.example.bus_application.databinding.ItemRecyclerBookmarkBusBinding
-import com.example.bus_application.databinding.ItemRecyclerBookmarkStopBinding
 
-class BusAdapter : RecyclerView.Adapter<BusAdapter.MyBusList>(){
+class BookmarkBusAdapter : RecyclerView.Adapter<BookmarkBusAdapter.MyBusList>(){
     private val list = listOf(1,2)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusAdapter.MyBusList {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkBusAdapter.MyBusList {
         val view = ItemRecyclerBookmarkBusBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return MyBusList(view)
     }
 
-    override fun onBindViewHolder(holder: BusAdapter.MyBusList, position: Int) {
+    override fun onBindViewHolder(holder: BookmarkBusAdapter.MyBusList, position: Int) {
         holder.bind(list[position])
     }
 

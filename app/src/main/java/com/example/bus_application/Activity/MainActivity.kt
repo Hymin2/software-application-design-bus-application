@@ -1,28 +1,23 @@
-package com.example.bus_application
+package com.example.bus_application.Activity
 
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bus_application.Adapter.BookmarkAdapter
-import com.example.bus_application.Adapter.BusAdapter
+import com.example.bus_application.R
 import com.example.bus_application.databinding.ActivityMainBinding
 
 
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var BookmarkAdapter : BookmarkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
@@ -36,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                 textGetoff.visibility = View.GONE
             }
             radioBtnRide.setOnClickListener {
-
                 rvBookmark.visibility = View.GONE
                 textRide.visibility = View.VISIBLE
                 textGetoff.visibility = View.GONE
@@ -68,8 +62,6 @@ class MainActivity : AppCompatActivity() {
                 layoutManager=LinearLayoutManager(context)
             }
         }
-
-
     }
 }
 

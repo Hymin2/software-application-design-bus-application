@@ -20,7 +20,7 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.MyStopList>(){
             binding.textStopName.text = "버스정류장 $pos 번"
             binding.textStopDirection.text = "정류장 방면 $pos 번"
             binding.rvBus.apply {
-                adapter = BusAdapter()
+                adapter = BookmarkBusAdapter()
                 layoutManager = LinearLayoutManager(binding.rvBus.context, LinearLayoutManager.VERTICAL, false)
                 setHasFixedSize(true)
             }
