@@ -15,4 +15,14 @@ object RetrofitClient {
         }
         return instance!!
     }
+
+    open fun getStopInstance() : Retrofit{
+        if(instance == null){
+            instance = Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+        return instance!!
+    }
 }
