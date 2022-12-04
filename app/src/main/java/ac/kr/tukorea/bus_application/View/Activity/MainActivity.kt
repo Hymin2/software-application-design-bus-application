@@ -9,9 +9,11 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var BookmarkAdapter : BookmarkAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         BookmarkAdapter = BookmarkAdapter()
+
 
         binding.run {
             radioBtnBookmark.setOnClickListener {

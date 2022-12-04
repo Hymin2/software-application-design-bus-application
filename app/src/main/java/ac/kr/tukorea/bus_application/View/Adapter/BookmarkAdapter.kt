@@ -18,12 +18,9 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.MyStopList>(){
     inner class MyStopList(private val binding: ItemRecyclerBookmarkStopBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(pos : Int){
             binding.textStopName.text = "버스정류장 $pos 번"
-            binding.textStopDirection.text = "정류장 방면 $pos 번"
-            binding.rvBus.apply {
-                adapter = BookmarkBusAdapter()
-                layoutManager = LinearLayoutManager(binding.rvBus.context, LinearLayoutManager.VERTICAL, false)
-                setHasFixedSize(true)
-            }
+            binding.textBusNum.text = "버스 번호 $pos 번"
+            binding.textBusTime.text = "남은 시간 $pos 번"
+            binding
         }
     }
 
