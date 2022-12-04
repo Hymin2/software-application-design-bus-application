@@ -11,7 +11,7 @@ interface AlarmGettingOffDAO {
     @Query("select * from alarm_get_off_table ag")
     fun getAlarmGetiingOff() : AlarmGettingOffEntity
 
-    @Query("select exists(select ag.id from alarm_get_off_table ag)")
+    @Query("select not exists(select ag.id from alarm_get_off_table ag)")
     fun isEmptyAlarmGettingOff() : Boolean
 
     @Insert

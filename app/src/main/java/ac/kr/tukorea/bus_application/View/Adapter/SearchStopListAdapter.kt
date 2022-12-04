@@ -6,9 +6,10 @@ import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
 import ac.kr.tukorea.bus_application.databinding.ItemRecyclerSearchStopBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class SearchStopListAdapter(private val items : MutableList<SearchStopDTO>, private val db : AppDatabase) : RecyclerView.Adapter<SearchStopListAdapter.MyStopList>() {
+class SearchStopListAdapter(private val items : ArrayList<SearchStopDTO>,private val checked : ArrayList<Boolean>, private val db : AppDatabase) : RecyclerView.Adapter<SearchStopListAdapter.MyStopList>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyStopList {
         val view = ItemRecyclerSearchStopBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,22 +30,30 @@ class SearchStopListAdapter(private val items : MutableList<SearchStopDTO>, priv
 
             binding.stopName.text = item.name
             binding.stopRegion.text = item.region_name
+            binding.stopBookmarkCb.isChecked = checked[pos]
 
             binding.stopBookmarkCb.setOnClickListener {
                 when(binding.stopBookmarkCb.isChecked){
                     true -> {
-                        val insert = AlarmGettingOffEntity()
                         Thread(Runnable {
-                            db.alarmGettingOffDao().insertAlarmGettingOff()
-                        }
-                        ).start()
+                            if(db.alarmGettingOffDao().isEmptyAlarmGettingOff()){
+                                val insert = AlarmGettingOffEntity(0, item.id, item.name, item.gps_x, item.gps_y)
+                                db.alarmGettingOffDao().insertAlarmGettingOff(insert)
+                            }
+                            else{
+                                binding.stopBookmarkCb.isChecked = false
+                            }
+                        }).start()
                     }
-
                     false -> {
-
+                        Thread(Runnable {
+                            val delete = db.alarmGettingOffDao().getAlarmGetiingOff()
+                            db.alarmGettingOffDao().deleteAlarmGettingOff(delete)
+                        }).start()
                     }
                 }
             }
+
         }
     }
 }

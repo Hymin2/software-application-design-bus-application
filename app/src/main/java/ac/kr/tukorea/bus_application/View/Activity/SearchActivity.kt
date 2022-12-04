@@ -4,11 +4,13 @@ import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.Remote.Client.RetrofitClient
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopList
 import ac.kr.tukorea.bus_application.Data.Remote.Service.ApiService
 import ac.kr.tukorea.bus_application.View.Adapter.SearchRouteListAdapter
 import ac.kr.tukorea.bus_application.View.Adapter.SearchStopListAdapter
 import ac.kr.tukorea.bus_application.databinding.ActivitySearchBinding
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.SearchView
@@ -21,12 +23,8 @@ import retrofit2.Response
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
+    private lateinit var db : AppDatabase
     val apiService = RetrofitClient.getApiInstance().create(ApiService::class.java)
-    val db = Room.databaseBuilder(
-        applicationContext,
-        AppDatabase::class.java,
-        "busappdb"
-    ).build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,7 @@ class SearchActivity : AppCompatActivity() {
 
         var query = intent.getStringExtra("query")
 
-
+        db = AppDatabase.getInstance(binding.root.context)
 
         binding.run {
             searchBus.setOnClickListener {
@@ -97,7 +95,21 @@ class SearchActivity : AppCompatActivity() {
                 response: Response<ArrayList<SearchStopDTO>>,
             ) {
                 if(response.isSuccessful && response.code() == 200){
-                    binding.rvStopSearch.adapter = SearchStopListAdapter(response.body()!!, db)
+                    var id : Int?
+                    var checked = arrayListOf<Boolean>()
+                    var body = response.body()!!
+
+                    id = db.alarmGettingOffDao().getAlarmGetiingOff().route_id
+
+                    for (i: Int in 0 until body!!.size) {
+                        if (id != null && response.body()!![i].id == id)
+                            checked!!.add(i, true)
+                        else
+                            checked!!.add(i, false)
+                    }
+
+                    binding.rvStopSearch.adapter = SearchStopListAdapter(body, checked, db)
+
                     Log.d("retrofit2", response.body()!!.toString())
                 }
             }

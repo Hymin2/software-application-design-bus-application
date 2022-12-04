@@ -11,4 +11,9 @@ data class AlarmGettingOffEntity(
     val route_name : String,
     val gps_x : Double,
     val gps_y : Double
-)
+){
+    constructor(route_id : Int,
+                route_name : String,
+                gps_x : Double,
+                gps_y : Double) : this(0, route_id, route_name, gps_x, gps_y)
+}

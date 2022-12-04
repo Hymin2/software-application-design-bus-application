@@ -27,10 +27,6 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.run {
-            Thread(Runnable {
-                db.bookmarkDao()
-            }
-            ).start()
 
             rvBookmark.apply {
                 this.layoutManager = LinearLayoutManager(context)
