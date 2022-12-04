@@ -3,7 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/alarm_checkbox.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/boommark_checkbox.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/btn_alarm.xml" value="0.219" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/btn_radio_main.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/btn_star.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/ic_baseline_arrow_circle_down_24.xml" value="0.2" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/layout_btn_checked.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/layout_btn_unchecked.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/oval_background.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/rectangle_backgroind.xml" value="0.219" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/round_background.xml" value="0.22" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/drawable/text_radio_main.xml" value="0.22" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/activity_main.xml" value="0.40217391304347827" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/activity_route.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/activity_route_details.xml" value="0.4305263157894737" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/activity_search.xml" value="0.1984375" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/fragment_alarm_get_off.xml" value="0.3890625" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/fragment_alarm_ride.xml" value="0.40217391304347827" />
@@ -11,11 +28,10 @@
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/item_recycler_alarm_ride.xml" value="0.40217391304347827" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/item_recycler_bookmark_bus.xml" value="0.40217391304347827" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/item_recycler_bookmark_stop.xml" value="0.40217391304347827" />
+        <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/item_recycler_route.xml" value="0.4" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/item_recycler_search_bus.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/khm82/Desktop/busapp/app/src/main/res/layout/item_recycler_search_stop.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2585" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/alarm_checkbox.xml" value="0.245" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/boommark_checkbox.xml" value="0.245" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/btn_radio_main.xml" value="0.2585" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2585" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/icon_black_bus.xml" value="0.2585" />
@@ -28,10 +44,7 @@
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/layout_btn_unchecked.xml" value="0.2585" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/layout_search_bar.xml" value="0.2585" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/layout_shape.xml" value="0.2415" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/drawable/text_radio_main.xml" value="0.245" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/activity_route.xml" value="0.2504528985507246" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/activity_search.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/bookmark.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/fragment_alarm_ride.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/fragment_book_mark1.xml" value="0.24456521739130435" />
@@ -43,10 +56,6 @@
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/item_recycler_bookmark_bus.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/item_recycler_bookmark_second.xml" value="0.4" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/item_recycler_bookmark_stop.xml" value="0.24456521739130435" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/item_recycler_route.xml" value="0.4" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/item_recycler_search_bus.xml" value="0.2504528985507246" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/item_recycler_search_stop.xml" value="0.536" />
-        <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/item_route.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/scott/AndroidStudioProjects/Bus_Application/app/src/main/res/layout/itme_recycler_bookmark.xml" value="0.20765027322404372" />
       </map>
     </option>

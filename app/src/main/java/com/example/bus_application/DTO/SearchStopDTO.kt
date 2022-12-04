@@ -11,8 +11,8 @@ data class SearchStopDTO (
     val gps_x : Double,
     @SerializedName("gps_y")
     val gps_y : Double,
+    @SerializedName("region_name")
+    val region_name : String,
     @SerializedName("mobile_no")
-    val mobile_no : Int,
-    @SerializedName("city")
-    val city : String
+    val mobile_no : String
 )

@@ -26,8 +26,8 @@ android {
         buildConfigField "String", "URL_BUS", properties['url.bus']
         buildConfigField "String", "ENDPOINT_GET_BUS_LIST", properties['endpoint.getBusList']
         buildConfigField "String", "ENDPOINT_GET_ROUTE_LIST", properties['endpoint.getRouteList']
-        buildConfigField "String", "API_KEY", properties['api.key']
-        buildConfigField "String", "API_TYPE", properties['api.type']
+        buildConfigField "String", "ENDPOINT_GET_STOP_LIST", properties['endpoint.getStopList']
+        buildConfigField "String", "ENDPOINT_GET_ROUTE_DETAILS_LIST", properties['endpoint.getRouteDetailsList']
     }
 
     buildTypes {

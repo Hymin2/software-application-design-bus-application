@@ -24,7 +24,7 @@ class SearchStopListAdapter(private val items : MutableList<SearchStopDTO>) : Re
     inner class MyStopList(private val binding: ItemRecyclerSearchStopBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(pos : Int){
             binding.stopName.text = items.get(pos).name
-            binding.stopRegion.text = items.get(pos).city
+            binding.stopRegion.text = items.get(pos).region_name
 
             binding.stopBookmarkCb.setOnCheckedChangeListener { compoundButton, b ->
 
