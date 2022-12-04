@@ -57,23 +57,27 @@
 
             <RadioButton
                 android:id="@+id/route_start_stop"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_radio_main"
                 android:button="@null"
                 android:gravity="center"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:text="A 방면"
                 android:textColor="@drawable/text_radio_main" />
 
             <RadioButton
                 android:id="@+id/route_end_stop"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_radio_main"
                 android:button="@null"
                 android:gravity="center"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:text="B 방면"
                 android:textColor="@drawable/text_radio_main" />
         </RadioGroup>

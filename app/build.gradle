@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.bus_application"
+        applicationId "ac.kr.tukorea.bus_application"
         minSdk 16
         targetSdk 32
         versionCode 1
