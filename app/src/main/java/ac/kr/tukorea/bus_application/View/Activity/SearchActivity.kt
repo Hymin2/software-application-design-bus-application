@@ -1,5 +1,6 @@
 package ac.kr.tukorea.bus_application.View.Activity
 
+import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.Remote.Client.RetrofitClient
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
@@ -13,6 +14,7 @@ import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,12 +22,19 @@ import retrofit2.Response
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
     val apiService = RetrofitClient.getApiInstance().create(ApiService::class.java)
+    val db = Room.databaseBuilder(
+        applicationContext,
+        AppDatabase::class.java,
+        "busappdb"
+    ).build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
 
         var query = intent.getStringExtra("query")
+
+
 
         binding.run {
             searchBus.setOnClickListener {
@@ -88,7 +97,7 @@ class SearchActivity : AppCompatActivity() {
                 response: Response<ArrayList<SearchStopDTO>>,
             ) {
                 if(response.isSuccessful && response.code() == 200){
-                    binding.rvStopSearch.adapter = SearchStopListAdapter(response.body()!!)
+                    binding.rvStopSearch.adapter = SearchStopListAdapter(response.body()!!, db)
                     Log.d("retrofit2", response.body()!!.toString())
                 }
             }

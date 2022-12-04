@@ -1,5 +1,6 @@
 package ac.kr.tukorea.bus_application.View.Adapter
 
+import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.View.Activity.RouteDetailsActivity
 import ac.kr.tukorea.bus_application.databinding.ItemRecyclerSearchBusBinding

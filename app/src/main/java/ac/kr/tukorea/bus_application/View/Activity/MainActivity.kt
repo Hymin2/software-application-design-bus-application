@@ -1,5 +1,6 @@
 package ac.kr.tukorea.bus_application.View.Activity
 
+import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.View.Adapter.BookmarkAdapter
 import ac.kr.tukorea.bus_application.databinding.ActivityMainBinding
 import android.content.Intent
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -19,9 +21,18 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        BookmarkAdapter = BookmarkAdapter()
+        var db = AppDatabase.getInstance(binding.root.context)
 
         binding.run {
+            Thread(Runnable {
+                db.bookmarkDao()
+            }
+            ).start()
+
+            rvBookmark.apply {
+                this.layoutManager = LinearLayoutManager(context)
+            }
+
             radioBtnBookmark.setOnClickListener {
                 rvBookmark.visibility = View.VISIBLE
                 textRide.visibility = View.GONE
@@ -54,11 +65,10 @@ class MainActivity : AppCompatActivity() {
 
             })
 
-            rvBookmark.apply{
-                adapter= BookmarkAdapter()
-                layoutManager=LinearLayoutManager(context)
-            }
+
         }
+
+
     }
 }
 
