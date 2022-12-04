@@ -20,7 +20,6 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.MyStopList>(){
             binding.textStopName.text = "버스정류장 $pos 번"
             binding.textBusNum.text = "버스 번호 $pos 번"
             binding.textBusTime.text = "남은 시간 $pos 번"
-            binding
         }
     }
 
