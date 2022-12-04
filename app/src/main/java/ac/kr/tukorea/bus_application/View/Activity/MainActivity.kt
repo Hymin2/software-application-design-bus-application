@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var BookmarkAdapter : BookmarkAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         var db = AppDatabase.getInstance(binding.root.context)
+
 
         binding.run {
             Thread(Runnable {

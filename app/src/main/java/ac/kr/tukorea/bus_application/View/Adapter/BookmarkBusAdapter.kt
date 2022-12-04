@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class BookmarkBusAdapter : RecyclerView.Adapter<BookmarkBusAdapter.MyBusList>(){
+    private val list = listOf(1,2)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyBusList {
         val view = ItemRecyclerBookmarkBusBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -13,17 +14,16 @@ class BookmarkBusAdapter : RecyclerView.Adapter<BookmarkBusAdapter.MyBusList>(){
     }
 
     override fun onBindViewHolder(holder: MyBusList, position: Int) {
-        holder.bind(position)
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return list.size
     }
 
     inner class MyBusList(private val binding: ItemRecyclerBookmarkBusBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(pos : Int){
-
-
+            binding.textBusNum.text = "버스 $pos 번"
             binding.textRemainTime.text = "남은 시간 $pos 분"
         }
     }
