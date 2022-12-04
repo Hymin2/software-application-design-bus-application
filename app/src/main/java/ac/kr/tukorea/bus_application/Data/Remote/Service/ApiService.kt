@@ -1,9 +1,9 @@
-package ac.kr.tukorea.bus_application.Service
+package ac.kr.tukorea.bus_application.Data.Remote.Service
 
 import ac.kr.tukorea.bus_application.BuildConfig
-import ac.kr.tukorea.bus_application.DTO.RouteDetailsStopDTO
-import ac.kr.tukorea.bus_application.DTO.SearchRouteDTO
-import ac.kr.tukorea.bus_application.DTO.SearchStopDTO
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.RouteDetailsStopDTO
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

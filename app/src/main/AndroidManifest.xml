@@ -21,16 +21,16 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="0d40c16b8cf8035fb1eb2135087b884f" />
         <activity
-            android:name=".Activity.KakaoMapActivity"
+            android:name=".View.Activity.KakaoMapActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.RouteDetailsActivity"
+            android:name=".View.Activity.RouteDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.SearchActivity"
+            android:name=".View.Activity.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".View.Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

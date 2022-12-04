@@ -1,4 +1,4 @@
-package ac.kr.tukorea.bus_application.Client
+package ac.kr.tukorea.bus_application.Data.Remote.Client
 
 
 import ac.kr.tukorea.bus_application.BuildConfig

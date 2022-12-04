@@ -1,4 +1,4 @@
-package ac.kr.tukorea.bus_application.DTO
+package ac.kr.tukorea.bus_application.Data.Remote.DTO
 
 import com.google.gson.annotations.SerializedName
 
