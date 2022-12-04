@@ -3,11 +3,17 @@ package ac.kr.tukorea.bus_application.Activity
 import ac.kr.tukorea.bus_application.Adapter.BookmarkAdapter
 import ac.kr.tukorea.bus_application.databinding.ActivityMainBinding
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

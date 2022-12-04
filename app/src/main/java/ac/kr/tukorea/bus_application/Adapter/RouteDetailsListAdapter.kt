@@ -1,7 +1,9 @@
 package ac.kr.tukorea.bus_application.Adapter
 
+import ac.kr.tukorea.bus_application.Activity.KakaoMapActivity
 import ac.kr.tukorea.bus_application.DTO.RouteDetailsStopDTO
 import ac.kr.tukorea.bus_application.databinding.ItemRecyclerRouteBinding
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +50,8 @@ class RouteDetailsListAdapter(private val items : ArrayList<RouteDetailsStopDTO>
             binding.mobileNo.text = item.mobile_no
 
             binding.root.setOnClickListener {
-
+                var intent = Intent(binding.root.context, KakaoMapActivity::class.java)
+                binding.root.context.startActivity(intent)
             }
         }
     }
