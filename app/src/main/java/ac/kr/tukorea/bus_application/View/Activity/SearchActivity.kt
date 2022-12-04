@@ -4,13 +4,11 @@ import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.Remote.Client.RetrofitClient
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
-import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopList
 import ac.kr.tukorea.bus_application.Data.Remote.Service.ApiService
 import ac.kr.tukorea.bus_application.View.Adapter.SearchRouteListAdapter
 import ac.kr.tukorea.bus_application.View.Adapter.SearchStopListAdapter
 import ac.kr.tukorea.bus_application.databinding.ActivitySearchBinding
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.SearchView
@@ -95,20 +93,30 @@ class SearchActivity : AppCompatActivity() {
                 response: Response<ArrayList<SearchStopDTO>>,
             ) {
                 if(response.isSuccessful && response.code() == 200){
-                    var id : Int?
-                    var checked = arrayListOf<Boolean>()
-                    var body = response.body()!!
+                    Thread(Runnable {
+                        var id : Int?
+                        var checked = arrayListOf<Boolean>()
+                        var body = response.body()!!
 
-                    id = db.alarmGettingOffDao().getAlarmGetiingOff().route_id
+                        if(!db.alarmGettingOffDao().isEmptyAlarmGettingOff()) {
+                            id = db.alarmGettingOffDao().getAlarmGetiingOff().route_id
 
-                    for (i: Int in 0 until body!!.size) {
-                        if (id != null && response.body()!![i].id == id)
-                            checked!!.add(i, true)
-                        else
-                            checked!!.add(i, false)
-                    }
-
-                    binding.rvStopSearch.adapter = SearchStopListAdapter(body, checked, db)
+                            for (i: Int in 0 until body!!.size) {
+                                if (id != null && response.body()!![i].id == id)
+                                    checked!!.add(i, true)
+                                else
+                                    checked!!.add(i, false)
+                            }
+                        }
+                        else{
+                            for (i: Int in 0 until body!!.size) {
+                                checked!!.add(i, false)
+                            }
+                        }
+                        runOnUiThread {
+                            binding.rvStopSearch.adapter = SearchStopListAdapter(body, checked, db)
+                        }
+                    }).start()
 
                     Log.d("retrofit2", response.body()!!.toString())
                 }

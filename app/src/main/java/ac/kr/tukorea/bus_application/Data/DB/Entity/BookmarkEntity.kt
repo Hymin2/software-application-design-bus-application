@@ -11,7 +11,5 @@ data class BookmarkEntity(
     val route_id : Int,
     val route_name : String,
     val stop_id : Int,
-    val stop_name : String,
-    val gps_x : Double,
-    val gps_y : Double
+    val stop_name : String
 )

@@ -3,6 +3,7 @@ package ac.kr.tukorea.bus_application.View.Adapter
 import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.DB.Entity.AlarmGettingOffEntity
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
+import ac.kr.tukorea.bus_application.View.Activity.SearchActivity
 import ac.kr.tukorea.bus_application.databinding.ItemRecyclerSearchStopBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ class SearchStopListAdapter(private val items : ArrayList<SearchStopDTO>,private
     inner class MyStopList(private val binding: ItemRecyclerSearchStopBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(pos : Int){
             val item = items[pos]
+            var activity = SearchActivity()
 
             binding.stopName.text = item.name
             binding.stopRegion.text = item.region_name
@@ -39,9 +41,14 @@ class SearchStopListAdapter(private val items : ArrayList<SearchStopDTO>,private
                             if(db.alarmGettingOffDao().isEmptyAlarmGettingOff()){
                                 val insert = AlarmGettingOffEntity(0, item.id, item.name, item.gps_x, item.gps_y)
                                 db.alarmGettingOffDao().insertAlarmGettingOff(insert)
+                                checked[pos] = true
                             }
                             else{
-                                binding.stopBookmarkCb.isChecked = false
+                                activity.runOnUiThread {
+                                    binding.stopBookmarkCb.isChecked = false
+                                    checked[pos] = false
+                                    Toast.makeText(binding.root.context, "하차 알람이 이미 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }).start()
                     }
@@ -49,6 +56,7 @@ class SearchStopListAdapter(private val items : ArrayList<SearchStopDTO>,private
                         Thread(Runnable {
                             val delete = db.alarmGettingOffDao().getAlarmGetiingOff()
                             db.alarmGettingOffDao().deleteAlarmGettingOff(delete)
+                            checked[pos] = false
                         }).start()
                     }
                 }

@@ -11,7 +11,7 @@ interface AlarmRidingDAO {
     @Query("select * from alarm_riding_table ar")
     fun getAlarmRiding() : AlarmRidingEntity
 
-    @Query("select exists(select ar.id from alarm_riding_table ar)")
+    @Query("select not exists(select ar.id from alarm_riding_table ar)")
     fun isEmptyAlarmRiding() : Boolean
 
     @Insert

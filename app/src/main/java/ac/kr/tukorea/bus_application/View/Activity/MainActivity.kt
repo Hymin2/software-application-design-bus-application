@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,18 +24,31 @@ class MainActivity : AppCompatActivity() {
 
         var db = AppDatabase.getInstance(binding.root.context)
 
-
         binding.run {
-
             rvBookmark.apply {
                 this.layoutManager = LinearLayoutManager(context)
             }
+
+            Thread(Runnable {
+                var items = db.bookmarkDao().getAllBookmark()
+                runOnUiThread {
+                    rvBookmark.adapter = BookmarkAdapter(items, db)
+                }
+            }).start()
 
             radioBtnBookmark.setOnClickListener {
                 rvBookmark.visibility = View.VISIBLE
                 textRide.visibility = View.GONE
                 textGetoff.visibility = View.GONE
+
+                Thread(Runnable {
+                    var items = db.bookmarkDao().getAllBookmark()
+                    runOnUiThread {
+                        rvBookmark.adapter = BookmarkAdapter(items, db)
+                    }
+                }).start()
             }
+
             radioBtnRide.setOnClickListener {
                 rvBookmark.visibility = View.GONE
                 textRide.visibility = View.VISIBLE
@@ -51,9 +63,10 @@ class MainActivity : AppCompatActivity() {
             searchBarMain.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    val intent = Intent(this@MainActivity, SearchActivity::class.java)
+                    var intent = Intent(this@MainActivity, SearchActivity::class.java)
                     intent.putExtra("query", query)
                     startActivity(intent)
+
 
                     return false
                 }
@@ -63,11 +76,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
-
-
         }
-
-
     }
 }
 
