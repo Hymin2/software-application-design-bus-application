@@ -17,6 +17,7 @@
         android:textStyle="bold"
         android:ellipsize="marquee"
         android:singleLine="true"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/arrow_image"
         app:layout_constraintBottom_toTopOf="@id/mobile_no"/>

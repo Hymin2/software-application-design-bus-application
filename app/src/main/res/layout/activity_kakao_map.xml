@@ -15,7 +15,6 @@
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/white"
         android:layout_weight="1.4"
         android:orientation="vertical"
         android:paddingLeft="10dp"
@@ -26,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30sp"
+            android:textColor="@color/black"
             android:text="버스 번호" />
 
         <View
