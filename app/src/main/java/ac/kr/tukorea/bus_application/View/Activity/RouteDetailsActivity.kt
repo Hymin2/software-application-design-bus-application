@@ -71,13 +71,13 @@ class RouteDetailsActivity : AppCompatActivity() {
             ) {
                 if(response.isSuccessful && response.code() == 200){
                     Thread(Runnable {
+                        getAllBus(item.id)
+
                         var routeid : Int?
                         var stopid : Int?
                         var checked_star = arrayListOf<Boolean>()
                         var checked_alarm = arrayListOf<Boolean>()
                         var body = response.body()!!
-
-                        getAllBus(item.id)
 
                         if(!db.alarmRidingDao().isEmptyAlarmRiding()) {
                             var data = db.alarmRidingDao().getAlarmRiding()
@@ -115,6 +115,7 @@ class RouteDetailsActivity : AppCompatActivity() {
 
                         runOnUiThread {
                             binding.rvRouteList.adapter = RouteDetailsListAdapter(body,checked_star, checked_alarm, item, db, all_bus!!)
+                            Log.d("1234", all_bus.toString())
                         }
                     }).start()
 
@@ -139,9 +140,10 @@ class RouteDetailsActivity : AppCompatActivity() {
             override fun onResponse(
                 call: Call<ArrayList<AllBusDTO>>,
                 response: Response<ArrayList<AllBusDTO>>,
-            ) {
+            ){
                 if(response.isSuccessful && response.code() == 200){
                     all_bus = response.body()!!
+                    Log.d("retrofit2", routeid.toString() + " " + response.body()!!.toString())
                 }
             }
 
@@ -149,5 +151,7 @@ class RouteDetailsActivity : AppCompatActivity() {
                 Log.d("retrofit2","failed" + t)
             }
         })
+
     }
+
 }

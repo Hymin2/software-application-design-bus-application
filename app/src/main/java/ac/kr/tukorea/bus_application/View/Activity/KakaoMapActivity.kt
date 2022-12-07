@@ -2,23 +2,23 @@ package ac.kr.tukorea.bus_application.View.Activity
 
 import ac.kr.tukorea.bus_application.Data.Remote.Client.RetrofitClient
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.AllBusDTO
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
+import ac.kr.tukorea.bus_application.Data.Remote.Service.ApiService
 import ac.kr.tukorea.bus_application.databinding.ActivityKakaoMapBinding
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
-import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
-import ac.kr.tukorea.bus_application.Data.Remote.Service.ApiService
-import android.os.Handler
-import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class KakaoMapActivity : AppCompatActivity() {
     private lateinit var binding: ActivityKakaoMapBinding
     val apiService = RetrofitClient.getApiInstance().create(ApiService::class.java)
-    var t : Thread? = null
     var gps_x : Double? = null
     var gps_y : Double? = null
 
@@ -35,6 +35,8 @@ class KakaoMapActivity : AppCompatActivity() {
 
         getStopInfo(stop_id)
         getBusGPS(route_id, stop_order, route_name!!)
+
+        binding.textBusNumMap.text = route_name!!
 
         Log.d("stopoid",stop_id.toString())
     }
@@ -98,7 +100,7 @@ class KakaoMapActivity : AppCompatActivity() {
 
     fun drawBus(bus : AllBusDTO, route_name : String){
         // 지도 중심점 설정
-        binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord((bus.gps_x, bus.gps_y), 0,true)
+        binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(bus.gps_x, bus.gps_y), 0,true)
         // 마커 생성
         val marker = MapPOIItem()
         marker.apply {
@@ -109,8 +111,4 @@ class KakaoMapActivity : AppCompatActivity() {
         binding.mapView.addPOIItem(marker)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        t!!.interrupt()
-    }
 }
