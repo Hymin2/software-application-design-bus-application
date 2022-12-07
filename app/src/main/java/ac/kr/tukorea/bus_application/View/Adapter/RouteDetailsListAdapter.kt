@@ -116,6 +116,7 @@ class RouteDetailsListAdapter(private val items : ArrayList<RouteDetailsStopDTO>
 
             binding.root.setOnClickListener {
                 var intent = Intent(binding.root.context, KakaoMapActivity::class.java)
+                intent.putExtra("stop_id",item.stop_id)
                 binding.root.context.startActivity(intent)
                 (binding.root.context as Activity).finish()
 

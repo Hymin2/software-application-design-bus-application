@@ -26,4 +26,10 @@ interface ApiService {
       @Query("route_id")
       route_id : Int
    ) : Call<ArrayList<RouteDetailsStopDTO>>
+
+   @GET(BuildConfig.ENDPOINT_GET_STOP_BY_ID_LIST)
+   fun getStopById(
+      @Query("id")
+      id : Int
+   ) : Call<SearchStopDTO>
 }
