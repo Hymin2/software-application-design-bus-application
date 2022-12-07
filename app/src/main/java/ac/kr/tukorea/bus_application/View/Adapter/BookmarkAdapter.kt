@@ -4,9 +4,11 @@ import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.DB.Entity.BookmarkEntity
 import ac.kr.tukorea.bus_application.databinding.ItemRecyclerBookmarkStopBinding
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 
 
 class BookmarkAdapter(private val items : List<BookmarkEntity>, private val db : AppDatabase) : RecyclerView.Adapter<BookmarkAdapter.MyStopList>(){
@@ -32,6 +34,7 @@ class BookmarkAdapter(private val items : List<BookmarkEntity>, private val db :
             binding.textBusNum.text = item.route_name
             binding.textBusTime.text = "남은 시간 $pos 분"
 
+
             binding.bookmarkDeleteBtn.setOnClickListener {
                 items.drop(pos)
                 Thread(Runnable {
@@ -45,7 +48,6 @@ class BookmarkAdapter(private val items : List<BookmarkEntity>, private val db :
                 (binding.root.context as Activity).overridePendingTransition(0, 0) //효과 없애기
                 (binding.root.context as Activity).startActivity(intent) //현재 액티비티 재실행 실시
                 (binding.root.context as Activity).overridePendingTransition(0, 0) //효과 없애기
-
 
             }
         }
