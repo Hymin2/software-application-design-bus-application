@@ -1,6 +1,7 @@
 package ac.kr.tukorea.bus_application.Data.Remote.Service
 
 import ac.kr.tukorea.bus_application.BuildConfig
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.AllBusDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.RouteDetailsStopDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
@@ -32,4 +33,10 @@ interface ApiService {
       @Query("id")
       id : Int
    ) : Call<SearchStopDTO>
+
+   @GET(BuildConfig.ENDPOINT_GET_BUS_LIST)
+   fun getAllBus(
+      @Query("routeid")
+      routeid : Int
+   ) : Call <ArrayList<AllBusDTO>>
 }

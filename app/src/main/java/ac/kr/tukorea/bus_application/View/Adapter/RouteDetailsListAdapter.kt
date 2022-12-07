@@ -4,6 +4,7 @@ import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.DB.Entity.AlarmGettingOffEntity
 import ac.kr.tukorea.bus_application.Data.DB.Entity.AlarmRidingEntity
 import ac.kr.tukorea.bus_application.Data.DB.Entity.BookmarkEntity
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.AllBusDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.RouteDetailsStopDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.View.Activity.KakaoMapActivity
@@ -11,6 +12,7 @@ import ac.kr.tukorea.bus_application.View.Activity.RouteDetailsActivity
 import ac.kr.tukorea.bus_application.databinding.ItemRecyclerRouteBinding
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +23,8 @@ class RouteDetailsListAdapter(private val items : ArrayList<RouteDetailsStopDTO>
                               private val checked_star : ArrayList<Boolean>,
                               private val checked_alarm : ArrayList<Boolean>,
                               private val route_item : SearchRouteDTO,
-                              private val db : AppDatabase)
+                              private val db : AppDatabase,
+                              private val allBusDTO: ArrayList<AllBusDTO>)
                             : RecyclerView.Adapter<RouteDetailsListAdapter.MyRouteDetails>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRouteDetails {
         val view = ItemRecyclerRouteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -40,6 +43,18 @@ class RouteDetailsListAdapter(private val items : ArrayList<RouteDetailsStopDTO>
     inner class MyRouteDetails(private val binding: ItemRecyclerRouteBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(pos : Int){
             val item = items.get(pos)
+
+            for (i : Int in 0 until allBusDTO.size){
+                if (allBusDTO[i].current_stop == item.stop_order){
+                    binding.busImage.visibility = View.VISIBLE
+                }
+
+                else{
+                    binding.busImage.visibility = View.INVISIBLE
+                }
+            }
+
+            Log.d("bus", allBusDTO.toString())
 
             binding.routeStarCb.isChecked = checked_star[pos]
             binding.routeAlarmCb.isChecked = checked_alarm[pos]

@@ -2,10 +2,12 @@ package ac.kr.tukorea.bus_application.View.Activity
 
 import ac.kr.tukorea.bus_application.Data.DB.Database.AppDatabase
 import ac.kr.tukorea.bus_application.Data.Remote.Client.RetrofitClient
+import ac.kr.tukorea.bus_application.Data.Remote.DTO.AllBusDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.RouteDetailsStopDTO
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.Data.Remote.Service.ApiService
 import ac.kr.tukorea.bus_application.View.Adapter.RouteDetailsListAdapter
+import ac.kr.tukorea.bus_application.View.Adapter.SearchRouteListAdapter
 import ac.kr.tukorea.bus_application.View.Adapter.SearchStopListAdapter
 import ac.kr.tukorea.bus_application.databinding.ActivityRouteDetailsBinding
 import android.os.Bundle
@@ -21,6 +23,7 @@ class RouteDetailsActivity : AppCompatActivity() {
     var turnPosition : Int? = null
     val apiService = RetrofitClient.getApiInstance().create(ApiService::class.java)
     private lateinit var db : AppDatabase
+    var all_bus = arrayListOf<AllBusDTO>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +77,8 @@ class RouteDetailsActivity : AppCompatActivity() {
                         var checked_alarm = arrayListOf<Boolean>()
                         var body = response.body()!!
 
+                        getAllBus(item.id)
+
                         if(!db.alarmRidingDao().isEmptyAlarmRiding()) {
                             var data = db.alarmRidingDao().getAlarmRiding()
 
@@ -109,7 +114,7 @@ class RouteDetailsActivity : AppCompatActivity() {
                         }
 
                         runOnUiThread {
-                            binding.rvRouteList.adapter = RouteDetailsListAdapter(body,checked_star, checked_alarm, item, db)
+                            binding.rvRouteList.adapter = RouteDetailsListAdapter(body,checked_star, checked_alarm, item, db, all_bus!!)
                         }
                     }).start()
 
@@ -124,6 +129,23 @@ class RouteDetailsActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ArrayList<RouteDetailsStopDTO>>, t: Throwable) {
+                Log.d("retrofit2","failed" + t)
+            }
+        })
+    }
+
+    fun getAllBus(routeid : Int){
+        apiService.getAllBus(routeid).enqueue(object : Callback<ArrayList<AllBusDTO>> {
+            override fun onResponse(
+                call: Call<ArrayList<AllBusDTO>>,
+                response: Response<ArrayList<AllBusDTO>>,
+            ) {
+                if(response.isSuccessful && response.code() == 200){
+                    all_bus = response.body()!!
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<AllBusDTO>>, t: Throwable) {
                 Log.d("retrofit2","failed" + t)
             }
         })
