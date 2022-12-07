@@ -9,6 +9,7 @@ import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchStopDTO
 import ac.kr.tukorea.bus_application.Data.Remote.Service.ApiService
+import android.os.Handler
 import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,6 +19,8 @@ class KakaoMapActivity : AppCompatActivity() {
     private lateinit var binding: ActivityKakaoMapBinding
     val apiService = RetrofitClient.getApiInstance().create(ApiService::class.java)
     var t : Thread? = null
+    var gps_x : Double? = null
+    var gps_y : Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +34,7 @@ class KakaoMapActivity : AppCompatActivity() {
         var stop_order = intent.getIntExtra("stop_order",0)
 
         getStopInfo(stop_id)
-
-        t = Thread((Runnable {
-            runOnUiThread {
-                while(!Thread.currentThread().isInterrupted()){
-                    getBusGPS(route_id, stop_order, route_name!!)
-                }
-            }
-        }))
-
-        t!!.start()
+        getBusGPS(route_id, stop_order, route_name!!)
 
         Log.d("stopoid",stop_id.toString())
     }
@@ -53,6 +47,8 @@ class KakaoMapActivity : AppCompatActivity() {
             ) {
                 if(response.isSuccessful && response.code() == 200){
                     var searchStopDTO = response.body()!!
+                    gps_x = searchStopDTO.gps_x
+                    gps_y = searchStopDTO.gps_y
 
                     drawMarker(searchStopDTO)
                     Log.d("retrofit2", response.body()!!.toString())
@@ -86,7 +82,7 @@ class KakaoMapActivity : AppCompatActivity() {
 
     fun drawMarker(stop : SearchStopDTO){
         // 지도 중심점 설정
-        binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(stop.gps_x, stop.gps_y), 0,true) // 해당 좌표가 화면 중심에 오도록 함
+         // 해당 좌표가 화면 중심에 오도록 함
 
         // 마커 생성
         val marker = MapPOIItem()
@@ -102,8 +98,7 @@ class KakaoMapActivity : AppCompatActivity() {
 
     fun drawBus(bus : AllBusDTO, route_name : String){
         // 지도 중심점 설정
-        binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(bus.gps_x, bus.gps_y), 0,true) // 해당 좌표가 화면 중심에 오도록 함
-
+        binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord((bus.gps_x, bus.gps_y), 0,true)
         // 마커 생성
         val marker = MapPOIItem()
         marker.apply {
