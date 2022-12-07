@@ -25,11 +25,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "URL_BUS", properties['url.bus']
-        buildConfigField "String", "ENDPOINT_GET_BUS_LIST", properties['endpoint.getBusList']
+        buildConfigField "String", "ENDPOINT_GET_ALL_BUS_LIST", properties['endpoint.getAllBusList']
         buildConfigField "String", "ENDPOINT_GET_ROUTE_LIST", properties['endpoint.getRouteList']
         buildConfigField "String", "ENDPOINT_GET_STOP_LIST", properties['endpoint.getStopList']
         buildConfigField "String", "ENDPOINT_GET_ROUTE_DETAILS_LIST", properties['endpoint.getRouteDetailsList']
         buildConfigField "String", "ENDPOINT_GET_STOP_BY_ID_LIST", properties['endpoint.getStopById']
+        buildConfigField "String", "ENDPOINT_GET_BUS", properties['endpoint.getBus']
     }
 
     buildTypes {

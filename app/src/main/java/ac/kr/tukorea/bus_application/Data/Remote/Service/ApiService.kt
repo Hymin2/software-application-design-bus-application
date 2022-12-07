@@ -34,9 +34,17 @@ interface ApiService {
       id : Int
    ) : Call<SearchStopDTO>
 
-   @GET(BuildConfig.ENDPOINT_GET_BUS_LIST)
+   @GET(BuildConfig.ENDPOINT_GET_ALL_BUS_LIST)
    fun getAllBus(
       @Query("routeid")
       routeid : Int
    ) : Call <ArrayList<AllBusDTO>>
+
+   @GET(BuildConfig.ENDPOINT_GET_BUS)
+   fun getBus(
+      @Query("routeid")
+      routeid : Int,
+      @Query("stoporder")
+      stoporder : Int
+   ) : Call <AllBusDTO>
 }

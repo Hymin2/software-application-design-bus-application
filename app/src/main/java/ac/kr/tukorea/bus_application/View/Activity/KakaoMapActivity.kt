@@ -2,7 +2,6 @@ package ac.kr.tukorea.bus_application.View.Activity
 
 import ac.kr.tukorea.bus_application.Data.Remote.Client.RetrofitClient
 import ac.kr.tukorea.bus_application.Data.Remote.DTO.AllBusDTO
-import ac.kr.tukorea.bus_application.Data.Remote.DTO.SearchRouteDTO
 import ac.kr.tukorea.bus_application.databinding.ActivityKakaoMapBinding
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +17,7 @@ import retrofit2.Response
 class KakaoMapActivity : AppCompatActivity() {
     private lateinit var binding: ActivityKakaoMapBinding
     val apiService = RetrofitClient.getApiInstance().create(ApiService::class.java)
-    var all_bus = arrayListOf<AllBusDTO>()
+    var t : Thread? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +25,24 @@ class KakaoMapActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        var intent = getIntent().getIntExtra("stop_id", 0)
-        var intent2 = getIntent().getIntExtra("route_id",0)
-        getStopInfo(intent)
-        getBusInfo(intent2)
+        var stop_id = getIntent().getIntExtra("stop_id", 0)
+        var route_id = intent.getIntExtra("route_id", 0)
+        var route_name = intent.getStringExtra("route_name")
+        var stop_order = intent.getIntExtra("stop_order",0)
 
-        Log.d("stopoid",intent.toString())
+        getStopInfo(stop_id)
+
+        t = Thread((Runnable {
+            runOnUiThread {
+                while(!Thread.currentThread().isInterrupted()){
+                    getBusGPS(route_id, stop_order, route_name!!)
+                }
+            }
+        }))
+
+        t!!.start()
+
+        Log.d("stopoid",stop_id.toString())
     }
 
     fun getStopInfo(id : Int) {
@@ -43,7 +54,7 @@ class KakaoMapActivity : AppCompatActivity() {
                 if(response.isSuccessful && response.code() == 200){
                     var searchStopDTO = response.body()!!
 
-                    drawStopMarker(searchStopDTO)
+                    drawMarker(searchStopDTO)
                     Log.d("retrofit2", response.body()!!.toString())
                 }
             }
@@ -54,7 +65,26 @@ class KakaoMapActivity : AppCompatActivity() {
         })
     }
 
-    fun drawStopMarker(stop : SearchStopDTO){
+    fun getBusGPS(id : Int, stoporder : Int, route_name : String) {
+        apiService.getBus(id, stoporder).enqueue(object : Callback<AllBusDTO> {
+            override fun onResponse(
+                call: Call<AllBusDTO>,
+                response: Response<AllBusDTO>,
+            ) {
+                if(response.isSuccessful && response.code() == 200){
+                    drawBus(response.body()!!, route_name)
+
+                    Log.d("retrofit2", response.body()!!.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<AllBusDTO>, t: Throwable) {
+                Log.d("retrofit2","failed" + t)
+            }
+        })
+    }
+
+    fun drawMarker(stop : SearchStopDTO){
         // 지도 중심점 설정
         binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(stop.gps_x, stop.gps_y), 0,true) // 해당 좌표가 화면 중심에 오도록 함
 
@@ -70,39 +100,22 @@ class KakaoMapActivity : AppCompatActivity() {
        binding.textStopNameMap.text = stop.name
     }
 
-    fun getBusInfo(routeid : Int) {
-        apiService.getAllBus(routeid).enqueue(object : Callback<ArrayList<AllBusDTO>> {
-            override fun onResponse(
-                call: Call<ArrayList<AllBusDTO>>,
-                response: Response<ArrayList<AllBusDTO>>
-            ) {
-                if(response.isSuccessful && response.code() == 200){
-                    all_bus = response.body()!!
+    fun drawBus(bus : AllBusDTO, route_name : String){
+        // 지도 중심점 설정
+        binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(bus.gps_x, bus.gps_y), 0,true) // 해당 좌표가 화면 중심에 오도록 함
 
-                    drawBusMarker(all_bus)
-                    Log.d("retrofit2", response.body()!!.toString())
-                }
-            }
-
-            override fun onFailure(call: Call<ArrayList<AllBusDTO>>, t: Throwable) {
-                Log.d("retrofit2","failed" + t)
-            }
-
-
-        })
-    }
-
-    fun drawBusMarker(bus: ArrayList<AllBusDTO>){
         // 마커 생성
         val marker = MapPOIItem()
         marker.apply {
-            for (i : Int in 1..bus.size) {
-                itemName = bus[i].bus_id
-                mapPoint = MapPoint.mapPointWithGeoCoord(bus[i].gps_x, bus[i].gps_y)  // 해당 좌표에 마커 표시
-                markerType = MapPOIItem.MarkerType.RedPin
-            }
+            itemName = route_name
+            mapPoint = MapPoint.mapPointWithGeoCoord(bus.gps_x, bus.gps_y)  // 해당 좌표에 마커 표시
+            markerType = MapPOIItem.MarkerType.YellowPin      // 기본 블루핀
         }
-        binding.textBusNumMap.text = bus[0].bus_id
         binding.mapView.addPOIItem(marker)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        t!!.interrupt()
     }
 }
